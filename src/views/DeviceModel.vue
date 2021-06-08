@@ -87,7 +87,6 @@
           text: item.Description,
           value: item.Id
         }
-        console.log(temp_item)
         this.typeObj.push(temp_item)
       }
     },
