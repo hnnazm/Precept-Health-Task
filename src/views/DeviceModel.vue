@@ -52,13 +52,18 @@
 <script lang="ts">
   import Vue from 'vue'
 
+  interface DeviceTypeInterface {
+    text: number,
+    value: string
+  }
+
   export default Vue.extend({
     data: () => ({
       brand: '',
       name: '',
       typeSelect: null,
       comment: '',
-      typeObj: [{}]
+      typeObj: [] as DeviceTypeInterface[]
     }),
     computed: {
       isValid() {
@@ -82,6 +87,7 @@
           text: item.Description,
           value: item.Id
         }
+        console.log(temp_item)
         this.typeObj.push(temp_item)
       }
     },
@@ -102,7 +108,7 @@
           body: JSON.stringify({
             BrandId: this.brand,
             Name: this.name,
-            TypeId: parseInt(this.typeSelect || ''),
+            TypeId: this.typeSelect,
             Comment: this.comment
           }),
           credentials: "same-origin"
